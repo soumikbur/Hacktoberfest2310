@@ -1,0 +1,82 @@
+#include <iostream>
+// #include <math.h>
+using namespace std;
+
+class cone
+{
+protected:
+    float radius;
+    float height;
+
+public:
+    void set_rad(float r)
+    {
+        radius = r;
+    }
+    void print_rad(void)
+    {
+        cout << "The required radius is :" << radius << endl;
+    }
+    void set_height(float h)
+    {
+        height = h;
+    }
+    void print_height(void)
+    {
+        cout << "The required height  of the cone is :" << height << endl;
+    }
+};
+
+class area_cone : virtual public cone
+{
+protected:
+
+    float area;
+public:
+    void print_area(void)
+    {
+        int sum = (radius + height);
+        area = 3.14 * radius * sum;
+        cout << "The required surface area of the cone is : " << area << " square metre " << endl;
+    }
+};
+
+class volume_cone : virtual public cone
+{
+protected:
+
+    float volume;
+public:
+    void print_vol(void)
+    {
+        volume = 3.14 * radius * height;
+        cout << "The required volume  of the cone is : " << volume << " cubic metre" << endl;
+    }
+};
+
+class result : public area_cone, public volume_cone
+{
+public:
+    float total;
+
+public:
+    void print_total()
+    {
+        total = (area + volume);
+        print_rad();
+        print_height();
+        print_area();
+        print_vol();
+        cout << "The total sum of the area and the volume of the cone is as follows : " << total << endl;
+    }
+};
+
+int main()
+{
+    result a;
+    a.set_rad(3.21);
+    a.set_height(5.3);
+    a.print_total();
+
+    return 0;
+}
